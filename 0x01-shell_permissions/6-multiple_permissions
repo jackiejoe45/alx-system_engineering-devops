@@ -1,2 +1,2 @@
-#!/bash/bin
+#!/bin/bash
 chown 700 hello
