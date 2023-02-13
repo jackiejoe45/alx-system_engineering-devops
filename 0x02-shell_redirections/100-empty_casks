@@ -1,2 +1,2 @@
 #!/bin/bash
-find.-type f -empty -or -type d -empty -print |awk -F/'{print $NF}'  
+find . -empty | while read line; do echo $(echo $line | awk -F / {print }); done; echo

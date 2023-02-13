@@ -1,2 +1,1 @@
 #!/bin/bash
-cut -f1 -d$'\t' < access.log |sort | uniq -c | sort -rn | head -11

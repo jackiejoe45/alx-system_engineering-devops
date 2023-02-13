@@ -1,2 +1,2 @@
 #!/bin/bash
-sed '$!p;$p' iacta >iacta.new && mv iacta.new iacta
+tail -1 iacta >> iacta

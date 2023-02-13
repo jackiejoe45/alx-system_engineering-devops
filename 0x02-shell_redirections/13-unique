@@ -1,4 +1,2 @@
 #!/bin/bash
-words=$(cat list)
-unique_words=$(echo "Swords" |sort | uniq -u)
-echo "unique_words"
+tr ' ' '\n' | sort  | uniq -u
