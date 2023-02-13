@@ -1,0 +1,7 @@
+#!/bin/bash
+while read -r line
+do
+first_letter="$(echo "$line" | cut -c)"
+echo -n "$first_letter"
+done
+echo ""

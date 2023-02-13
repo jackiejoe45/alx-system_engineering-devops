@@ -1,0 +1,2 @@
+#!/bin/bash
+directories=$(find . -type d \(! -name"."!-name".."\) -print |grep -c/)
