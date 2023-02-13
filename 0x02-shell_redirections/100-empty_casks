@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -empty | while read line; do echo $(echo $line | awk -F / {print }); done; echo
+find . -empty -printf %f'\n'
