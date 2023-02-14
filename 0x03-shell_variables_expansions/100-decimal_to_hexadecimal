@@ -1,2 +1,2 @@
 #!/bin/bash
-printf %xn $DECIMAL
+paste - - | cut -d$t -f1
