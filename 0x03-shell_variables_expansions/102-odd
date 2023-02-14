@@ -1,2 +1,2 @@
 #!/bin/bash
-| head -n $(($(wc -l < file.txt) / 2 + 1)) | tail -n +1
+paste - - | cut -d$'\t' -f1
