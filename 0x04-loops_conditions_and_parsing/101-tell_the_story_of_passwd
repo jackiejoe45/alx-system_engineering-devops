@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This script tells a story based on the /etc/passwd file
+
+# Use IFS to set the delimiter to ":"
+IFS=":"
+
+# Read /etc/passwd line by line
+while read -r username x uid gid gecos home_dir shell; do
+  # Check if the user is not a system user (UID >= 1000)
+  if [ $uid -ge 1000 ]; then
+    echo "The user $username is part of the $gid gang, lives in $home_dir and rides $shell."
+    echo "$uid's place is protected by the passcode x, more info about the user here: $gecos"
+  fi
+done < /etc/passwd
