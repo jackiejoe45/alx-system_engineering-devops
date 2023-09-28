@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# This script displays username, UID, and home directory from /etc/passwd
+
+# Use IFS to set the delimiter to ":"
+IFS=":"
+
+# Read /etc/passwd line by line
+while read -r username x uid x home_dir x; do
+  # Display the desired information
+  echo "Username: $username"
+  echo "User ID: $uid"
+  echo "Home Directory: $home_dir"
+done < /etc/passwd
