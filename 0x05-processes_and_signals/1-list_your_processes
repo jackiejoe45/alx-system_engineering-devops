@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # displays a list of currently running processes
 
-ps -eo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --sort=-%cpu | head -50
-
+# List all processes
+ps -eo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --sort=-%cpu | awk 'NR <= 50 {printf "%-10s %-5s %-5s %-10s %-10s %-5s %-10s %-5s %-10s\n", $1, $2, $3, $4, $5, $6, $7, $8, $9}'
