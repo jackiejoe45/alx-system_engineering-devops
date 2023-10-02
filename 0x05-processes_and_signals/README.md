@@ -1,2 +1,2 @@
-# Processes ans Signals
+# Processes and Signals
 Using Bash

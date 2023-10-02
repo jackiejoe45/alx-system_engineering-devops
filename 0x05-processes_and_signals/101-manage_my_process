@@ -19,7 +19,7 @@ start() {
 stop() {
   if [ -f "/var/run/my_process.pid" ]; then
     pid=$(cat /var/run/my_process.pid)
-    kill $pid
+    kill "$pid"
     rm -f /var/run/my_process.pid
     echo "manage_my_process stopped"
   else
