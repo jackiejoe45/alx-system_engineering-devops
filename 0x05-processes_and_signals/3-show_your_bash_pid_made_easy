@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 # displays the PID, along with the process name, 
 # of processes whose name contain the word bash without using ps
-pgrep bash
+
+for pid in /proc/*/; do
+  pid=$(basename "$pid")
+  if [[ -e "/proc/$pid/comm" ]]; then
+    name=$(cat "/proc/$pid/comm")
+    if [[ "$name" == *bash* ]]; then
+      echo "$pid $name"
+    fi
+  fi
+done
 
