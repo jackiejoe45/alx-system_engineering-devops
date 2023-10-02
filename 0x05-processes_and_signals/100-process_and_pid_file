@@ -1,4 +1,4 @@
-#!/bin/bash/env bash
+#!/usr/bin/env bash
 # creates a file containing its PID
 
 cleanup() {
