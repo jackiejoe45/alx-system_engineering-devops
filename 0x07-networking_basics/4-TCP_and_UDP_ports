@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Display listening ports with PID and program name
+
+# Check if the script is run with sudo or as root
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run this script with sudo or as root."
+  exit 1
+fi
+
+# Use netstat to display listening ports
+netstat -tuln | awk '
+  NR > 2 {
+    split($4, local, ":")
+    cmd = "lsof -i :"$4
+    cmd | getline process_info
+    close(cmd)
+    split(process_info, process, " ")
+    print $1, $2, $3, local[2], "*", $6, process[1], process_info
+  }
+'
+exit 0
