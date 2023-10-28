@@ -2,7 +2,7 @@
 
 ![Image of a simple web stack](0-simple_web_stack.jpg)
 
-[Visit Board](https://miro.com/app/board/uXjVOfJwct0=/)
+[Visit Board]([https://miro.com/app/board/uXjVOfJwct0=/](https://www.canva.com/design/DAFykWmnyps/LFKwQy1uhaW-YXlWtXO7WQ/view?utm_content=DAFykWmnyps&utm_campaign=designshare&utm_medium=link&utm_source=editor))
 
 ## Description
 
