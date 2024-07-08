@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2154
+# This script installs and configures HAProxy on lb-01 server
+# Configure HAProxy to send traffic to web-01 and web-02 servers
+# Distributes requests using a Round-Robin algorithm
+# HAProxy can be managed via an init script
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install haproxy
+sudo chown -R ubuntu /etc/haproxy
+
+configuration="\
+frontend http
+				 bind *:80
+				 mode http
+				 default_backend web-server
+backend web-server
+				balance roundrobin
+				server 233080-web-01 34.207.62.45:80 check
+				server 233080-web-02 54.210.67.16 check
+"
+
+sudo echo "$configuration" >> /etc/haproxy/haproxy.cfg
+sudo service haproxy restart

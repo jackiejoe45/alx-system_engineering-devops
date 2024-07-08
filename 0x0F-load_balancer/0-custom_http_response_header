@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# This script installs Nginx and configures a custom HTTP response header
+
+# Install Nginx if it's not already installed
+if ! command -v nginx &> /dev/null; then
+    apt-get update
+    apt-get install -y nginx
+fi
+
+# Get the hostname of the server
+HOSTNAME=$(hostname)
+
+# creating new index,html
+echo "Hello World!" > /var/www/html/index.html
+
+# create new error page
+echo "Ceci n'est pas une page" > /var/www/html/error_404.html
+
+# Configure Nginx to add the custom header
+cat <<EOF > /etc/nginx/conf.d/custom_header.conf
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        add_header X-Served-By $HOSTNAME;
+        try_files \$uri \$uri/ =404;
+    }
+
+    if (\$request_filename ~ redirect_me){
+            rewrite ^ https://youtube.com/watch?v=3j66gHbyFF8 permanent;
+        }
+        error_page 404 /error_404.html;
+        location = /error_404.html {
+            internal;
+}
+EOF
+
+# Restart Nginx to apply changes
+systemctl restart nginx
