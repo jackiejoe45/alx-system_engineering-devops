@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # debugging nginx (not running)
-
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-service nginx restart
-pkill -o nginx
+sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
+echo "" | sudo dd status=none of=/run/nginx.pid
