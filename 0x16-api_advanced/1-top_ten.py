@@ -13,13 +13,14 @@ def top_ten(subreddit):
 
     try:
         response = requests.get(url, headers=headers, allow_redirects=False)
-        if response.status_code == 200:
+        # Check if the response is successful and has content
+        if response.status_code == 200 and response.headers.get('content-type') == 'application/json':
             try:
                 data = response.json()
                 posts = data['data']['children']
                 for post in posts:
                     print(post['data']['title'])
-            except ValueError:
+            except (ValueError, KeyError):
                 print("None")
         else:
             print("None")
