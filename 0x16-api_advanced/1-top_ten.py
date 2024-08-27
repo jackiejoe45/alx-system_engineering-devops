@@ -1,28 +1,33 @@
 #!/usr/bin/python3
+
 """
-This module contains the function top_ten.
+prints the titles of the first 10 hot posts listed for a given subreddit
 """
 
-import requests
+from requests import get
 
 
 def top_ten(subreddit):
-    """Prints the titles of the first 10 hot posts for a given subreddit."""
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {'User-Agent': 'python:subreddit.top.ten:v1.0 (by /u/yourusername)'}
+    """
+    function that queries the Reddit API and prints the titles of the first
+    10 hot posts listed for a given subreddit
+    """
+
+    if subreddit is None or not isinstance(subreddit, str):
+        print("None")
+
+    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    params = {'limit': 10}
+    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+
+    response = get(url, headers=user_agent, params=params)
+    results = response.json()
 
     try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
-        # Check if the response is successful and has content
-        if response.status_code == 200 and response.headers.get('content-type') == 'application/json':
-            try:
-                data = response.json()
-                posts = data['data']['children']
-                for post in posts:
-                    print(post['data']['title'])
-            except (ValueError, KeyError):
-                print("None")
-        else:
-            print("None")
-    except requests.RequestException:
+        my_data = results.get('data').get('children')
+
+        for i in my_data:
+            print(i.get('data').get('title'))
+
+    except Exception:
         print("None")
